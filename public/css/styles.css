@@ -4,3 +4,28 @@
 *:after {
   box-sizing: border-box;
 }
+.homeLink{
+  text-decoration: none;
+  color: black;
+  font-size: 24pt;
+}
+.accountLink a{
+  text-decoration: none;
+}
+nav ul{
+  list-style-type: none;
+  display: flex;
+}
+nav ul li{
+  margin-right: 1rem;
+  border: solid .1rem;
+  padding: .3rem;
+}
+.upgrades{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.upgrades span{
+  background-color: aqua;
+  margin: .3rem;
+}

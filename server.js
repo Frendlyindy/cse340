@@ -9,6 +9,7 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
+const baseController = require("./controllers/baseController")
 
 /* ***********************
  * View Engine and Templates
@@ -35,6 +36,6 @@ app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
 // Index route
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+app.get("/", baseController.buildHome)
+// Inventory routes
+app.use("/inv", require("./routes/inventory-route"))

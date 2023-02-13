@@ -14,5 +14,10 @@ invCont.buildByClassification = async function (req, res, next) {
     data,
 })
 }
+invCont.buildByVehicle = async function(req, res, next) {
+    const vehicleId = req.params.vehicleId
+    let data = await invModel.getVehicleData
+    (vehicleId)
+}
 
 module.exports = invCont;

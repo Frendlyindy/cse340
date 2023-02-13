@@ -31,4 +31,8 @@ Util.getNav = async function (req, res, next) {
   return nav
 }
 
+Util.buildVehicleCard = async function(data) {
+    
+}
+
 module.exports = Util

@@ -32,6 +32,7 @@ Util.getNav = async function (req, res, next) {
 }
 
 Util.buildVehicleCard = async function(car) {
+  console.log("Do we ever get to Util.buildVehicleCard = async function(car) where the view is being built to insert into vehicle-detail.ejs")
     let ux = `<h1>${car.inv_make} ${car.inv_model} ${car.inv_year}</h1>
     <br>
     <img src="${car.inv_image}" alt="${car.inv_make} ${car.inv_model}">
@@ -43,6 +44,10 @@ Util.buildVehicleCard = async function(car) {
       <p>Miles: ${car.inv_miles}</p><br>
     </div>`;
     return ux;
+}
+
+Util.getVehicle = async function(req, res, next){
+  
 }
 
 module.exports = Util

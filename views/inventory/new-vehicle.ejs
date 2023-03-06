@@ -8,7 +8,7 @@
       <p class="notice"><%= message %></p>
       <% } %>
 
-      <form action="/controllers/invController.js" method="post">
+      <form action="/controllers/invController.js" method="post" class="new-car-form">
         <label for="classification">Classification</label>
         <select name="classification" id="classification">
           <option value="" selected disabled hidden>Choose Classification</option>
@@ -25,9 +25,9 @@
         <label for="desc">Description</label>
         <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
         <label for="img-path">Image Path</label>
-        <input type="text" name="img-path" id="img-path">
+        <input type="text" name="img-path" id="img-path" value="/public/images/vehicles/no-image.png">
         <label for="thumb">Thumbnail Path</label>
-        <input type="text" name="thumb" id="thumb">
+        <input type="text" name="thumb" id="thumb" value="/public/images/vehicles/no-image-tns.png">
         <label for="price">Price</label>
         <input type="text" name="price" id="price">
         <label for="year">Year</label>
@@ -35,6 +35,6 @@
         <label for="miles">Miles</label>
         <input type="number" name="miles" id="miles">
         <label for="color">Color</label>
-        <input type="text" name="color" id="color">
+        <input type="text" name="color" id="color"><br>
         <button type="submit">Add Vehicle</button>
       </form>

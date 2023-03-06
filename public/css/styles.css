@@ -12,15 +12,39 @@
 .accountLink a{
   text-decoration: none;
 }
-nav ul{
+nav {
+  background-color: #333;
+  height: 50px;
+}
+
+nav ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
-nav ul li{
-  margin-right: 1rem;
-  border: solid .1rem;
-  padding: .3rem;
+
+nav li {
+  margin: 0 10px;
 }
+
+nav a {
+  display: block;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 16px;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  background-color: #555;
+}
+
+
 .upgrades{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -30,3 +54,84 @@ nav ul li{
   margin: .3rem;
 }
 
+.new-car-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+select,
+input[type="text"],
+textarea,
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+select:focus,
+input[type="text"]:focus,
+textarea:focus,
+input[type="number"]:focus {
+  outline: none;
+  border: 2px solid dodgerblue;
+}
+
+button[type="submit"] {
+  background-color: dodgerblue;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: #4CAF50;
+}
+
+/* Style the select box arrow */
+select::-ms-expand {
+  display: none;
+}
+
+select::before,
+select::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  pointer-events: none;
+}
+
+select::before {
+  border-top-color: #ccc;
+}
+
+select::after {
+  margin-top: 7px;
+  border-top-color: #fff;
+}

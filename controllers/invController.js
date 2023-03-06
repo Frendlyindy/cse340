@@ -30,4 +30,39 @@ invCont.buildByVehicle = async function(req, res, next) {
 
 }
 
+/* ****************************************
+*  Deliver managment view
+**************************************** */
+invCont.buildManagementView = async function(req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("inventory/managment-view.ejs", {
+      title: "Managment",
+      nav,
+      errors: null,
+      message: null,
+      view: utilities.buildManageView()
+    })
+  }
+
+  invCont.buildNewClassView = async function(req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("inventory/new-classification.ejs", {
+      title: "Add Classification",
+      nav,
+      errors: null,
+      message: null,
+    })
+  }
+
+  invCont.buildNewCarView = async function(req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("inventory/new-vehicle.ejs", {
+      title: "Add Vehicle",
+      nav,
+      errors: null,
+      message: null,
+    })
+  }
+  
+
 module.exports = invCont;

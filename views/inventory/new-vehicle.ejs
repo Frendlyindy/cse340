@@ -1,0 +1,40 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    <% if (message) { %>
+      <p class="notice"><%= message %></p>
+      <% } %>
+
+      <form action="/controllers/invController.js" method="post">
+        <label for="classification">Classification</label>
+        <select name="classification" id="classification">
+          <option value="" selected disabled hidden>Choose Classification</option>
+          <option value="custom">Custom</option>
+          <option value="sedan">Sedan</option>
+          <option value="sport">Sport</option>
+          <option value="suv">SUV</option>
+          <option value="truck">Truck</option>
+        </select>
+        <label for="make">Make</label>
+        <input type="text" name="make" id="make">
+        <label for="model">Model</label>
+        <input type="text" name="model" id="model">
+        <label for="desc">Description</label>
+        <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+        <label for="img-path">Image Path</label>
+        <input type="text" name="img-path" id="img-path">
+        <label for="thumb">Thumbnail Path</label>
+        <input type="text" name="thumb" id="thumb">
+        <label for="price">Price</label>
+        <input type="text" name="price" id="price">
+        <label for="year">Year</label>
+        <input type="text" name="year" id="year">
+        <label for="miles">Miles</label>
+        <input type="number" name="miles" id="miles">
+        <label for="color">Color</label>
+        <input type="text" name="color" id="color">
+        <button type="submit">Add Vehicle</button>
+      </form>

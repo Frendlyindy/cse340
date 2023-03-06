@@ -32,7 +32,7 @@ Util.getNav = async function (req, res, next) {
 }
 
 Util.buildVehicleCard = async function(car) {
-  console.log("Do we ever get to Util.buildVehicleCard = async function(car) where the view is being built to insert into vehicle-detail.ejs")
+  // console.log("Do we ever get to Util.buildVehicleCard = async function(car) where the view is being built to insert into vehicle-detail.ejs")
     let ux = `<h1>${car.inv_make} ${car.inv_model} ${car.inv_year}</h1>
     <br>
     <img src="${car.inv_image}" alt="${car.inv_make} ${car.inv_model}">
@@ -46,8 +46,65 @@ Util.buildVehicleCard = async function(car) {
     return ux;
 }
 
-Util.getVehicle = async function(req, res, next){
-  
+Util.buildManageView = async function(data){
+  let ui = `
+  <div>
+    <a href="</new-class>">Add new classification</a>
+    <a href="<>">Add new vehicle</a>
+</div>
+  `;
+
+  return ui;
+}
+
+Util.buildNewClass = async function(data){
+  let ux = `
+  <form action="" method="post">
+        <label for="new-class">Classification Name</label>
+        <p>Name may NOT contain a space or special character of any kind</p>
+        <input type="text" name="new-class" id="new-class">
+        <button type="submit">Add Classification</button>
+      </form>
+  `;
+
+  return ux;
+}
+
+Util.buildVehicleForm = async function(data){
+  let ui = `
+  <form action="" method="post">
+  <label for="classification">Classification</label>
+  <select name="classification" id="classification">
+    <option value="" selected disabled hidden>Choose Classification</option>
+    <option value="custom">Custom</option>
+    <option value="sedan">Sedan</option>
+    <option value="sport">Sport</option>
+    <option value="suv">SUV</option>
+    <option value="truck">Truck</option>
+  </select>
+  <label for="make">Make</label>
+  <input type="text" name="make" id="make">
+  <label for="model">Model</label>
+  <input type="text" name="model" id="model">
+  <label for="desc">Description</label>
+  <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+  <label for="img-path">Image Path</label>
+  <input type="text" name="img-path" id="img-path">
+  <label for="thumb">Thumbnail Path</label>
+  <input type="text" name="thumb" id="thumb">
+  <label for="price">Price</label>
+  <input type="text" name="price" id="price">
+  <label for="year">Year</label>
+  <input type="text" name="year" id="year">
+  <label for="miles">Miles</label>
+  <input type="number" name="miles" id="miles">
+  <label for="color">Color</label>
+  <input type="text" name="color" id="color">
+  <button type="submit">Add Vehicle</button>
+</form>
+  `;
+
+  return ui;
 }
 
 module.exports = Util

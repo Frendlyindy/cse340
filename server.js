@@ -10,6 +10,13 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const baseController = require("./controllers/baseController")
+const bodyParser = require("body-parser")
+
+/* ***********************
+ * Middleware
+ *************************/
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing
 
 /* ***********************
  * View Engine and Templates
@@ -39,3 +46,4 @@ app.listen(port, () => {
 app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", require("./routes/inventory-route"))
+app.use("/client", require("./routes/account-route"))

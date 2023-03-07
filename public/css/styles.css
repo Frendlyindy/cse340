@@ -135,3 +135,23 @@ select::after {
   margin-top: 7px;
   border-top-color: #fff;
 }
+
+.manage-links {
+  display: flex;
+  /* justify-content: space-between; */
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.manage-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.manage-links a:hover {
+  background-color: #ddd;
+}

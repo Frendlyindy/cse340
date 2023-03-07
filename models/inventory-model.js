@@ -29,4 +29,14 @@ async function getVehicleData(vehicleId){
     }
 }
 
-module.exports = {getClassifications, getVehiclesByClassificationId, getVehicleData}
+async function sendNewClass(classification_name){
+    try{
+        await pool.query("INSERT INTO classification (classification_name) VALUES ($1)", [classification_name])
+    }
+    catch
+        (error){
+            console.error('sendNewClass error' + error)
+    }
+}
+
+module.exports = {getClassifications, getVehiclesByClassificationId, getVehicleData, sendNewClass}

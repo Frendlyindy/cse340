@@ -78,6 +78,8 @@ invCont.buildManagementView = async function(req, res, next) {
   }
 
   invCont.postNewCar = async function(req, res, next){
+    let car = req.body;
+    invModel.sendNewCar(car.classification, car.make, car.model, car.description, car.imgPath, car.thumb, car.price, car.year, car.miles, car.color)
     let nav = await utilities.getNav()
     res.render("inventory/managment-view.ejs", {
       title: "Managment",

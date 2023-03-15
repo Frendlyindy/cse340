@@ -41,11 +41,11 @@ async function sendNewClass(classification_name){
 
 async function sendNewCar(classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color){
     try{
-        await pool.query("INSERT INTO vehcile (classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", [classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color])
+        await pool.query("INSERT INTO inventory (classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", [classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color])
     }
     catch(error){
         console.error('sendNewCar error' + error)
     }
 }
 
-module.exports = {getClassifications, getVehiclesByClassificationId, getVehicleData, sendNewClass}
+module.exports = {getClassifications, getVehiclesByClassificationId, getVehicleData, sendNewClass, sendNewCar}

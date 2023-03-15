@@ -8,7 +8,7 @@
       <p class="notice"><%= message %></p>
       <% } %>
 
-      <form action="/controllers/invController.js" method="post" class="new-car-form">
+      <form action="/inv/newCarPost" method="post" class="new-car-form">
         <label for="classification">Classification</label>
         <select name="classification" id="classification">
           <%-dropdown%>
@@ -17,10 +17,10 @@
         <input type="text" name="make" id="make">
         <label for="model">Model</label>
         <input type="text" name="model" id="model">
-        <label for="desc">Description</label>
-        <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
-        <label for="img-path">Image Path</label>
-        <input type="text" name="img-path" id="img-path" value="/public/images/vehicles/no-image.png">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <label for="imgPath">Image Path</label>
+        <input type="text" name="imgPath" id="imgPath" value="/public/images/vehicles/no-image.png">
         <label for="thumb">Thumbnail Path</label>
         <input type="text" name="thumb" id="thumb" value="/public/images/vehicles/no-image-tns.png">
         <label for="price">Price</label>

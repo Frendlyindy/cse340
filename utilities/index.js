@@ -62,7 +62,7 @@ Util.buildClassDropdown = async function(){
 
   let ux = `<option value="" selected disabled hidden>Choose Classification</option>`;
   data.rows.forEach((row) => {
-    ux += `<option value="${row.classification_id}">${row.classification_name}</option`
+    ux += `<option value="${row.classification_id}">${row.classification_name}</option>`
   })
 
   return ux;

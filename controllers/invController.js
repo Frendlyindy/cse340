@@ -56,13 +56,36 @@ invCont.buildManagementView = async function(req, res, next) {
 
   invCont.buildNewCarView = async function(req, res, next) {
     let nav = await utilities.getNav()
+    let dropdown = await utilities.buildClassDropdown()
     res.render("inventory/new-vehicle.ejs", {
       title: "Add Vehicle",
       nav,
+      dropdown,
       errors: null,
       message: null,
     })
   }
-  
+  invCont.postNewClass = async function(req, res, next){
+    invModel.sendNewClass(req.body.newClass)
+    let nav = await utilities.getNav()
+    res.render("inventory/managment-view.ejs", {
+      title: "Managment",
+      nav,
+      errors: null,
+      message: null,
+      view: utilities.buildManageView()
+    })
+  }
+
+  invCont.postNewCar = async function(req, res, next){
+    let nav = await utilities.getNav()
+    res.render("inventory/managment-view.ejs", {
+      title: "Managment",
+      nav,
+      errors: null,
+      message: null,
+      view: utilities.buildManageView()
+    })
+  }
 
 module.exports = invCont;

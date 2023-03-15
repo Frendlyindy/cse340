@@ -11,12 +11,7 @@
       <form action="/controllers/invController.js" method="post" class="new-car-form">
         <label for="classification">Classification</label>
         <select name="classification" id="classification">
-          <option value="" selected disabled hidden>Choose Classification</option>
-          <option value="custom">Custom</option>
-          <option value="sedan">Sedan</option>
-          <option value="sport">Sport</option>
-          <option value="suv">SUV</option>
-          <option value="truck">Truck</option>
+          <%-dropdown%>
         </select>
         <label for="make">Make</label>
         <input type="text" name="make" id="make">

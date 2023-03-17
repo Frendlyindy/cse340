@@ -72,7 +72,7 @@ invCont.buildManagementView = async function(req, res, next) {
       title: "Managment",
       nav,
       errors: null,
-      message: null,
+      message: 'New Class Added!',
       view: utilities.buildManageView()
     })
   }
@@ -85,7 +85,7 @@ invCont.buildManagementView = async function(req, res, next) {
       title: "Managment",
       nav,
       errors: null,
-      message: null,
+      message: 'New Vehicle Added!',
       view: utilities.buildManageView()
     })
   }

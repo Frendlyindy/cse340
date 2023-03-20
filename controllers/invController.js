@@ -22,7 +22,7 @@ invCont.buildByVehicle = async function(req, res, next) {
     res.render('./inventory/vehicle-detail.ejs',
     {
         
-        title: data[0].inv_make + ' ' + data.inv_model,
+        title: data[0].inv_make + ' ' + data[0].inv_model,
         navBar,
         message: null,
         view: vehicleViewBuild

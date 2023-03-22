@@ -32,6 +32,29 @@ validate.newVehicleRules = () => {
         .isLength({min: 3})
         .withMessage("Please enter a model for the vehicle"),
 
-        body('')
+        body('description')
+        .trim()
+        .escape()
+        .withMessage("Enter a description"),
+
+        body('imgPath')
+        .trim()
+        .escape()
+        .withMessage('Please enter a valid image path'),
+
+        body('thumbPath')
+        .trim()
+        .escape()
+        .withMessage('Please enter a vaild thumbnail path'),
+
+        body('price')
+        .trim()
+        .escape()
+        .isDecimal()
+        .withMessage('Please enter a USD amount with two numbers after the decimal eg. $19.05'),
+
+        body('year')
+        .trim()
+        .escape()
     ]
 }

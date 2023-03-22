@@ -42,7 +42,7 @@ validate.newVehicleRules = () => {
         .escape()
         .withMessage('Please enter a valid image path'),
 
-        body('thumbPath')
+        body('thumb')
         .trim()
         .escape()
         .withMessage('Please enter a vaild thumbnail path'),
@@ -50,11 +50,23 @@ validate.newVehicleRules = () => {
         body('price')
         .trim()
         .escape()
-        .isDecimal()
-        .withMessage('Please enter a USD amount with two numbers after the decimal eg. $19.05'),
+        .isDecimal({decimal_digits: '2'})
+        .withMessage('Please enter a USD amount with two numbers after the decimal eg. 19.05'),
 
         body('year')
         .trim()
         .escape()
+        .matches('(?:(?:19|20)[0-9]{2})')
+        .withMessage('PLease enter a valid year'),
+
+        body('miles')
+        .trim()
+        .escape()
+        .withMessage('Please enter the milage of the vehicle'),
+
+        body('color')
+        .trim()
+        .escape()
+        .withMessage('Please enter a color')
     ]
 }

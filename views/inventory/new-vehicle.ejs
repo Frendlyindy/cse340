@@ -14,22 +14,22 @@
           <%-dropdown%>
         </select>
         <label for="make">Make</label>
-        <input type="text" name="make" id="make" placeholder="eg. GMC, Honda, Kia">
+        <input type="text" name="make" id="make" placeholder="eg. GMC, Honda, Kia" required value="<%= locals.make %>">>
         <label for="model">Model</label>
-        <input type="text" name="model" id="model" placeholder="eg. Sierra, Civic, Soul">
+        <input type="text" name="model" id="model" placeholder="eg. Sierra, Civic, Soul" required value="<%= locals.model %>">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <textarea name="description" id="description" cols="30" rows="10" value="<%= locals.description %>"></textarea>
         <label for="imgPath">Image Path</label>
-        <input type="text" name="imgPath" id="imgPath" value="/images/vehicles/no-image.png">
+        <input type="text" name="imgPath" id="imgPath" value="/images/vehicles/no-image.png" required value="<%= locals.imgPath %>">
         <label for="thumb">Thumbnail Path</label>
-        <input type="text" name="thumb" id="thumb" value="/images/vehicles/no-image-tn.png">
+        <input type="text" name="thumb" id="thumb" value="/images/vehicles/no-image-tn.png" required value="<%= locals.thumb %>">
         <label for="price">Price</label>
-        <input type="text" name="price" id="price" placeholder="eg. $20,000">
+        <input type="text" name="price" id="price" placeholder="eg. $20,000" required value="<%= locals.price %>">
         <label for="year">Year</label>
-        <input type="text" name="year" id="year" placeholder="eg. 1998">
+        <input type="text" name="year" id="year" placeholder="eg. 1998" required value="<%= locals.year %>">
         <label for="miles">Miles</label>
-        <input type="number" name="miles" id="miles" placeholder="eg. 120000">
+        <input type="number" name="miles" id="miles" placeholder="eg. 120000" required value="<%= locals.miles %>">
         <label for="color">Color</label>
-        <input type="text" name="color" id="color" placeholder="eg Candy Apple Red"><br>
+        <input type="text" name="color" id="color" placeholder="eg Candy Apple Red" required value="<%= locals.color %>"><br>
         <button type="submit">Add Vehicle</button>
       </form>

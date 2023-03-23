@@ -2,6 +2,7 @@
 const express = require("express");
 const router = new express.Router();
 const invController = require("../controllers/invController");
+const regValidate = require('../utilities/inv-validation')
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassification);
@@ -10,7 +11,9 @@ router.get("/", invController.buildManagementView);
 router.get("/new-class", invController.buildNewClassView);
 router.get("/new-car", invController.buildNewCarView);
 router.post("/newClassPost", invController.postNewClass);
-router.post("/newCarPost", invController.postNewCar);
+router.post("/newCarPost",
+regValidate.newVehicleRules, 
+invController.postNewCar);
 
 
 module.exports = router;

@@ -11,12 +11,16 @@ const env = require("dotenv").config()
 const app = express()
 const baseController = require("./controllers/baseController")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+
 
 /* ***********************
  * Middleware
  *************************/
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing
+app.use(cookieParser())
+
 
 /* ***********************
  * View Engine and Templates

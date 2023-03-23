@@ -57,13 +57,19 @@ Util.buildManageView = async function(data){
   return ui;
 }
 
-Util.buildClassDropdown = async function(){
+Util.buildClassDropdown = async function(classification_id = null){
   let data = await invModel.getClassifications()
 
-  let ux = `<option value="" selected disabled hidden>Choose Classification</option>`;
+  let ux = '<select name="classification_id" id="classificationList">' 
+  classificationList += "<option>Choose a Classification</option>"
   data.rows.forEach((row) => {
-    ux += `<option value="${row.classification_id}">${row.classification_name}</option>`
+  classificationList += 'option value="' + row.classification_id + '"'
+  if (classification_id != null & row.classification_id == classification_id) {
+  classificationList += " selected "
+  }
+  classificationList += ">" + row.classification_name + "</option>"
   })
+  classificationList += "</select>"
 
   return ux;
 }

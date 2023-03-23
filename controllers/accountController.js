@@ -1,5 +1,7 @@
 const utilities = require("../utilities");
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 
 /* ****************************************
@@ -69,6 +71,36 @@ try {
       message,
       errors: null,
     })
+  }
+}
+
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+async function accountLogin(req, res) {
+  let nav = await utilities.getNav()
+  const { client_email, client_password } = req.body
+  const clientData = await accountModel.getClientByEmail(client_email)
+  if (!clientData) {
+    const message = "Please check your credentials and try again."
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      message,
+      errors: null,
+      client_email,
+    })
+    return
+  }
+  try {
+    if (await bcrypt.compare(client_password, clientData.client_password)) {
+      delete clientData.client_password
+      const accessToken = jwt.sign(clientData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      res.cookie("jwt", accessToken, { httpOnly: true })
+      return res.redirect("/account/")
+    }
+  } catch (error) {
+    return res.status(403).send('Access Forbidden')
   }
 }
 

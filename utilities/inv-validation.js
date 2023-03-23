@@ -70,3 +70,5 @@ validate.newVehicleRules = () => {
         .withMessage('Please enter a color')
     ]
 }
+
+module.exports = validate;

@@ -9,10 +9,10 @@ router.get("/login", account.buildLogin,
   res.status(200).send('login process')
 });
 router.get("/registration", account.buildRegister);
-router.get("/client/register", account.registerClient,
+router.get("/client/register",
 regValidate.registationRules(),
-regValidate.checkRegData,
-// accountController.accountRegister);
+regValidate.checkRegData, 
+account.registerClient
 )
 
 module.exports = router;

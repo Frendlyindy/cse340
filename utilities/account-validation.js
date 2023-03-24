@@ -54,10 +54,10 @@ body("client_email")
     * ************************ */
     validate.checkRegData = async (req, res, next) => {
     const { client_firstname, client_lastname, client_email } = req.body
-    let errors = I
+    let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
-    let nav = await utilities.getNav ()
+    let nav = await utilities.getNav()
     res. render ("../views/clients/register", {
     errors, message: null, title: "Registration", nav, client_firstname, client_lastname, client_email,
     })

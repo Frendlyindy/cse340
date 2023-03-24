@@ -39,12 +39,10 @@ validate.newVehicleRules = () => {
 
         body('imgPath')
         .trim()
-        .escape()
         .withMessage('Please enter a valid image path'),
 
         body('thumb')
         .trim()
-        .escape()
         .withMessage('Please enter a vaild thumbnail path'),
 
         body('price')
@@ -70,5 +68,23 @@ validate.newVehicleRules = () => {
         .withMessage('Please enter a color')
     ]
 }
+
+validate.checkRegData = async (req, res, next) => {
+    const { classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res. render ("../views/inventory/new-vehicle.ejs", {
+    errors, 
+    message: null, 
+    title: "Add Vehicle", 
+    nav, 
+    classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color
+    })
+    return
+    }
+    next ()
+    }
 
 module.exports = validate;

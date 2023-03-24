@@ -69,7 +69,7 @@ validate.newVehicleRules = () => {
     ]
 }
 
-validate.checkRegData = async (req, res, next) => {
+validate.checkRegDataVehicle = async (req, res, next) => {
     const { classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color } = req.body
     let errors = []
     errors = validationResult(req)
@@ -86,5 +86,23 @@ validate.checkRegData = async (req, res, next) => {
     }
     next ()
     }
+
+    validate.checkRegDataClass = async (req, res, next) => {
+        const { newClass } = req.body
+        let errors = []
+        errors = validationResult(req)
+        if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res. render ("../views/inventory/new-classification.ejs", {
+        errors, 
+        message: null, 
+        title: "Add Classification", 
+        nav, 
+        newClass,
+        })
+        return
+        }
+        next ()
+        }
 
 module.exports = validate;

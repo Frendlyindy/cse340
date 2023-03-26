@@ -98,7 +98,7 @@ async function accountLogin(req, res) {
       delete clientData.client_password
       const accessToken = jwt.sign(clientData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
       res.cookie("jwt", accessToken, { httpOnly: true })
-      return res.redirect("/client/index.ejs")
+      return res.redirect("/client/index")
     }
   } catch (error) {
     return res.status(403).send('Access Forbidden')

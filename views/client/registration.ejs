@@ -3,7 +3,7 @@
     <% } else {
       res.redirect('/')
     } %>
-
+    <p><%- message%></p>
     <% if (errors) { %>
       <ul class="notice">
      <% errors.array().forEach(error => { %>
@@ -14,13 +14,13 @@
 
       <form action="/client/register" method="post" class="register-form">
         <label for="fname">First Name</label>
-        <input type="text" name="client_firstname" id="clientFirstname" required value="<%= locals.client_firstname %>">
+        <input type="text" name="client_firstname" id="client_firstname" required value="<%= locals.client_firstname %>">
         <label for="lname">Last Name</label>
-        <input type="text" name="lname" id="lname" required>
+        <input type="text" name="client_lastname" id="client_lastname" required>
         <label for="email">User Email</label>
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="client_email" id="client_email" required>
         <label for="password">Password</label>
         <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-        <input type="password" name="password" id="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
-        <button type="button">Submit</button>
+        <input type="password" name="client_password" id="client_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <button type="submit">Submit</button>
     </form>

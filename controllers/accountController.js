@@ -1,6 +1,7 @@
 const utilities = require("../utilities");
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const accountModel = require("../models/account-model")
 require("dotenv").config()
 
 
@@ -42,7 +43,7 @@ try {
   // pass regular password and cost (salt is generated automatically)
   hashedPassword = await bcrypt.hashSync(client_password, 10)
 } catch (error) {
-  res.status(500).render("account/register", {
+  res.status(500).render("client/registration.ejs", {
     title: "Registration",
     nav,
     message: 'Sorry, there was an error processing the registration.',
@@ -57,7 +58,7 @@ try {
   )
   console.log(regResult)
   if (regResult) {
-    res.status(201).render("clients/login.ejs", {
+    res.status(201).render("client/login.ejs", {
       title: "Login",
       nav,
       message: `Congratulations, you\'re registered ${client_firstname}. Please log in.`,
@@ -83,7 +84,7 @@ async function accountLogin(req, res) {
   const clientData = await accountModel.getClientByEmail(client_email)
   if (!clientData) {
     const message = "Please check your credentials and try again."
-    res.status(400).render("account/login", {
+    res.status(400).render("client/login.ejs", {
       title: "Login",
       nav,
       message,
@@ -97,11 +98,11 @@ async function accountLogin(req, res) {
       delete clientData.client_password
       const accessToken = jwt.sign(clientData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
       res.cookie("jwt", accessToken, { httpOnly: true })
-      return res.redirect("/account/")
+      return res.redirect("/client/index.ejs")
     }
   } catch (error) {
     return res.status(403).send('Access Forbidden')
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerClient }
+module.exports = { buildLogin, buildRegister, registerClient, accountLogin }

@@ -10,11 +10,11 @@
 
       <form action="/inv/newCarPost" method="post" class="new-car-form">
         <label for="classification">Classification</label>
-        <select name="classification" id="classification">
+        <!-- <select name="classification" id="classification"> -->
           <%-dropdown%>
-        </select>
+        <!-- </select> -->
         <label for="make">Make</label>
-        <input type="text" name="make" id="make" placeholder="eg. GMC, Honda, Kia" required value="<%= locals.make %>">>
+        <input type="text" name="make" id="make" placeholder="eg. GMC, Honda, Kia" required value="<%= locals.make %>">
         <label for="model">Model</label>
         <input type="text" name="model" id="model" placeholder="eg. Sierra, Civic, Soul" required value="<%= locals.model %>">
         <label for="description">Description</label>

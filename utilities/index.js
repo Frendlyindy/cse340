@@ -109,6 +109,30 @@ Util.checkLogin = (req, res, next) => {
   }
  }
 
+/* ****************************************
+* Check if user is logged in
+**************************************** */
+Util.isLoggedIn = (req, res, next) => {
+  // pull jwt from cookie
+  if(req.headers.cookie){
+    try{
+      const tokenString = req.headers.cookie;
+      const token = tokenString.replace("jwt=", "");
+      // console.log(token);
+      jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      res.locals.isLoggedIn = true;
+    }
+    catch (error) {
+      res.clearCookie("jwt", { httpOnly: true});
+      res.locals.isLoggedIn = false;
+    }
+  }
+  else{
+    res.locals.isLoggedIn = false;
+  }
+  next();
+};
+
  /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

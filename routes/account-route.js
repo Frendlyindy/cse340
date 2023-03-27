@@ -8,18 +8,19 @@ router.get("/login", account.buildLogin,
 (req, res) => {
   res.status(200).send('login process')
 });
-router.get("/", utilities.checkLogin, utilities.handleErrors(utilities.buildManageView))
+router.get("/", utilities.checkLogin, utilities.handleErrors(utilities.buildManageView));
+router.get("/manage", account.clientIndex)
 router.get("/registration", utilities.handleErrors(account.buildRegister));
 router.post("/register",
-// regValidate.registationRules(),
-// regValidate.checkRegData, 
+regValidate.registationRules(),
+regValidate.checkRegData, 
 utilities.handleErrors(account.registerClient)
 )
 // Process the login request
 router.post(
   "/login",
-  // regValidate.loginRules(),
-  // regValidate.checkLoginData,
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
   utilities.handleErrors(account.accountLogin)
 )
 

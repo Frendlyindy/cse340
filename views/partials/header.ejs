@@ -3,5 +3,12 @@
         CSE Motors
     </a>
     </span>
-    <span class="accountLink"><a href="/client/login">My Account</a></span>
+    <span class="accountLink">
+        <% if(locals.isLoggedIn) {%>
+            <a href="#">Logout</a>
+        <%} else{%>
+            <a href="/client/login">My Account</a>
+            <%}%>
+
+    </span>
 </header>

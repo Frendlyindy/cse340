@@ -16,6 +16,15 @@ async function buildLogin(req, res, next) {
       message: null,
     })
   }
+
+  async function clientIndex(req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("client/index.ejs", {
+      title: "Client Management",
+      nav,
+      message: null,
+    })
+  }
   
 /* ****************************************
 *  Deliver registration view
@@ -105,4 +114,4 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerClient, accountLogin }
+module.exports = { buildLogin, buildRegister, registerClient, accountLogin, clientIndex }

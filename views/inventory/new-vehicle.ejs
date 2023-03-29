@@ -17,16 +17,14 @@
         <%}%>
 
       <form action="/inv/newCarPost" method="post" class="new-car-form">
-        <label for="classification">Classification</label>
-        <!-- <select name="classification" id="classification"> -->
+        <label for="classification_id">Classification</label>
           <%-dropdown%>
-        <!-- </select> -->
         <label for="make">Make</label>
         <input type="text" name="make" id="make" placeholder="eg. GMC, Honda, Kia" required value="<%= locals.make %>">
         <label for="model">Model</label>
         <input type="text" name="model" id="model" placeholder="eg. Sierra, Civic, Soul" required value="<%= locals.model %>">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10" value="<%= locals.description %>"></textarea>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
         <label for="imgPath">Image Path</label>
         <input type="text" name="imgPath" id="imgPath" value="/images/vehicles/no-image.png" required value="<%= locals.imgPath %>">
         <label for="thumb">Thumbnail Path</label>
@@ -34,7 +32,7 @@
         <label for="price">Price</label>
         <input type="number" name="price" id="price" placeholder="eg. $20,000" required value="<%= locals.price %>">
         <label for="year">Year</label>
-        <input type="number" name="year" id="year" placeholder="eg. 1998" required value="<%= locals.year %>" pattern="(?:(?:19|20)[0-9]{2})">
+        <input type="text" name="year" id="year" placeholder="eg. 1998" required value="<%= locals.year %>" pattern="(?:(?:19|20)[0-9]{2})">
         <label for="miles">Miles</label>
         <input type="number" name="miles" id="miles" placeholder="eg. 120000" required value="<%= locals.miles %>">
         <label for="color">Color</label>

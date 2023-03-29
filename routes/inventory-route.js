@@ -10,13 +10,13 @@ router.get("/type/:classificationId", Util.handleErrors(invController.buildByCla
 router.get("/detail/:inv_id", Util.handleErrors(invController.buildByVehicle));
 router.get("/", Util.handleErrors(invController.buildManagementView));
 router.get("/new-class", Util.handleErrors(invController.buildNewClassView));
-router.get("/new-car", Util.handleErrors(invController.buildNewCarView));
+router.get("/new-car",Util.handleErrors(invController.buildNewCarView));
 router.post("/newClassPost", 
-regValidate.newClassRules,
+regValidate.newClassRules(),
 regValidate.checkRegDataClass,
 Util.handleErrors(invController.postNewClass));
 router.post("/newCarPost",
-regValidate.newVehicleRules, 
+regValidate.newVehicleRules(), 
 regValidate.checkRegDataVehicle,
 Util.handleErrors(invController.postNewCar));
 

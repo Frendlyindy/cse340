@@ -22,6 +22,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+app.use(utilities.isLoggedIn);
+
 
 
 

@@ -155,3 +155,7 @@ select::after {
 .manage-links a:hover {
   background-color: #ddd;
 }
+
+.notice{
+  color: blue;
+}

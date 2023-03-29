@@ -15,9 +15,10 @@ validate.newClassRules = () => {
 
 validate.newVehicleRules = () => {
     return [
-        body('classification')
+        body('classification_id')
         .trim()
         .escape()
+        .not().isEmpty()
         .withMessage("Choose a classification"),
 
         body('make')
@@ -35,74 +36,83 @@ validate.newVehicleRules = () => {
         body('description')
         .trim()
         .escape()
+        .isLength({min: 3})
         .withMessage("Enter a description"),
 
         body('imgPath')
         .trim()
+        .isLength({min: 3})
         .withMessage('Please enter a valid image path'),
 
         body('thumb')
         .trim()
+        .isLength({min: 3})
         .withMessage('Please enter a vaild thumbnail path'),
 
         body('price')
         .trim()
         .escape()
-        .isDecimal({decimal_digits: '2'})
+        .isDecimal({decimal_digits: 2})
         .withMessage('Please enter a USD amount with two numbers after the decimal eg. 19.05'),
 
         body('year')
         .trim()
         .escape()
         .matches('(?:(?:19|20)[0-9]{2})')
-        .withMessage('PLease enter a valid year'),
+        .isLength({min: 4, max: 4})
+        .withMessage('Please enter a valid year'),
 
         body('miles')
         .trim()
         .escape()
+        .isLength({min: 1})
         .withMessage('Please enter the milage of the vehicle'),
 
         body('color')
         .trim()
         .escape()
+        .isLength({min: 3})
         .withMessage('Please enter a color')
-    ]
-}
+    ];
+};
 
 validate.checkRegDataVehicle = async (req, res, next) => {
-    const { classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color } = req.body
+//    console.log(req.body)
+    const { classification_id, make, model, description, imgPath, thumbPath, price, year, miles, color } = req.body
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
-    let nav = await utilities.getNav()
-    res. render ("../views/inventory/new-vehicle.ejs", {
-    errors, 
-    message: null, 
-    title: "Add Vehicle", 
-    nav, 
-    classificationId, make, model, description, imgPath, thumbPath, price, year, miles, color
-    })
-    return
-    }
-    next ()
-    }
-
-    validate.checkRegDataClass = async (req, res, next) => {
-        const { newClass } = req.body
-        let errors = []
-        errors = validationResult(req)
-        if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        res. render ("../views/inventory/new-classification.ejs", {
-        errors, 
-        message: null, 
-        title: "Add Classification", 
-        nav, 
-        newClass,
+        let dropdown = await utilities.buildClassDropdown()
+        res.render("../views/inventory/new-vehicle.ejs", {
+            errors,
+            message: null,
+            title: "Add Vehicle",
+            nav,
+            dropdown,
+            classification_id, make, model, description, imgPath, thumbPath, price, year, miles, color
         })
         return
-        }
-        next ()
-        }
+    }
+    next();
+}
+
+validate.checkRegDataClass = async (req, res, next) => {
+    const { newClass } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("../views/inventory/new-classification.ejs", {
+            errors,
+            message: null,
+            title: "Add Classification",
+            nav,
+            newClass,
+        })
+        return
+    }
+    next()
+}
 
 module.exports = validate;

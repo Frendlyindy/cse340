@@ -118,7 +118,6 @@ Util.isLoggedIn = (req, res, next) => {
     try{
       const tokenString = req.headers.cookie;
       const token = tokenString.replace("jwt=", "");
-      // console.log(token);
       jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
       res.locals.isLoggedIn = true;
     }
@@ -132,6 +131,10 @@ Util.isLoggedIn = (req, res, next) => {
   }
   next();
 };
+
+Util.employee = (req, res, next) => {
+ 
+}
 
  /* ****************************************
  * Middleware For Handling Errors

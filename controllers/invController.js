@@ -68,11 +68,12 @@ invCont.buildManagementView = async function(req, res, next) {
   invCont.postNewClass = async function(req, res, next){
     invModel.sendNewClass(req.body.newClass)
     let nav = await utilities.getNav()
+    let message = 'New Class Added!';
     res.render("inventory/managment-view.ejs", {
       title: "Managment",
       nav,
       errors: null,
-      message: 'New Class Added!',
+      message,
       view: utilities.buildManageView()
     })
   }
@@ -81,11 +82,12 @@ invCont.buildManagementView = async function(req, res, next) {
     let car = req.body;
     invModel.sendNewCar(car.classification, car.make, car.model, car.description, car.imgPath, car.thumb, car.price, car.year, car.miles, car.color)
     let nav = await utilities.getNav()
+    let message = 'New Vehicle Added!';
     res.render("inventory/managment-view.ejs", {
       title: "Managment",
       nav,
       errors: null,
-      message: 'New Vehicle Added!',
+      message,
       view: utilities.buildManageView()
     })
   }

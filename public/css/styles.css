@@ -89,11 +89,11 @@ input[type="text"]:focus,
 textarea:focus,
 input[type="number"]:focus {
   outline: none;
-  border: 2px solid red;
+  border: 2px solid darkslategray;
 }
 
 button[type="submit"] {
-  background-color: red;
+  background-color: darkslategray;
   border: none;
   color: white;
   padding: 10px 20px;

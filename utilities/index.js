@@ -133,7 +133,7 @@ Util.isLoggedIn = (req, res, next) => {
 };
 
 Util.employee = (req, res, next) => {
- 
+  const clientStatus = res.locals.clientData.client_type
 }
 
  /* ****************************************

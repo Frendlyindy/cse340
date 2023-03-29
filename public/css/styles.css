@@ -124,7 +124,6 @@ select::after {
   width: 0;
   height: 0;
   border: 5px solid transparent;
-  pointer-events: none;
 }
 
 select::before {

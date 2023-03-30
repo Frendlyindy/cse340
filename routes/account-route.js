@@ -8,7 +8,7 @@ router.get("/login", account.buildLogin,
 (req, res) => {
   res.status(200).send('login process')
 });
-router.get("/", utilities.checkLogin, utilities.handleErrors(utilities.buildManageView));
+router.get("/", utilities.checkLogin,utilities.handleErrors(utilities.buildManageView));
 router.get("/manage", account.clientIndex)
 router.get("/registration", utilities.handleErrors(account.buildRegister));
 router.post("/register",
@@ -23,5 +23,8 @@ router.post(
   regValidate.checkLoginData,
   utilities.handleErrors(account.accountLogin)
 )
-
+router.post('/login', (req, res) => {
+  req.session.loggedin = true
+})
+router.get("/logout", utilities.logout)
 module.exports = router;

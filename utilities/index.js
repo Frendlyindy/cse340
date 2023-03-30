@@ -87,7 +87,7 @@ Util.checkJWTToken = (req, res, next) => {
       function (err, clientData) {
         if (err) {
           res.clearCookie("jwt")
-          return res.redirect("/account/login")
+          return res.redirect("/client/login")
         }
       res.locals.clientData = clientData
       res.locals.loggedin = 1
@@ -105,7 +105,7 @@ Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {
-    return res.redirect("/account/login")
+    return res.redirect("/client/login")
   }
  }
 
@@ -132,8 +132,26 @@ Util.isLoggedIn = (req, res, next) => {
   next();
 };
 
+// Check client status
 Util.employee = (req, res, next) => {
-  const clientStatus = res.locals.clientData.client_type
+  if (req.cookies.jwt) {
+    let clientStatus = res.locals.clientData.client_type
+    if ((clientStatus == 'Employee') || (clientStatus == 'Admin')) {
+      next()
+    }
+    else {
+      return res.redirect("/")
+    }
+  }
+  else{
+    return res.redirect("/client/login")
+  }
+}
+
+// Logout Function to delete Cookie and return to home screen
+Util.logout = (req, res, next) => {
+  res.clearCookie('jwt')
+  res.redirect("/")
 }
 
  /* ****************************************

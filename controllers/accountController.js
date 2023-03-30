@@ -19,10 +19,12 @@ async function buildLogin(req, res, next) {
 
   async function clientIndex(req, res, next) {
     let nav = await utilities.getNav()
+    let info = res.locals.clientData;
     res.render("client/index.ejs", {
       title: "Client Management",
       nav,
       message: null,
+      info
     })
   }
   

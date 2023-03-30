@@ -7,4 +7,13 @@
       <p class="notice"><%= message %></p>
       <% } %>
 
+      <% if ((info.client_type) == 'Client'){%>
+        <h2>Welcome to the site <% info.client_firstname %></h2>
+      <% } else { %>
+        <h2>Welcome to the site <% info.client_firstname %></h2>
+        <h3>Inventory Managment</h3>
+        <a href="/inv">Inventory Managment page</a>
+        <%}%>
+
+
       <p>You are logged in</p>

@@ -37,7 +37,7 @@ async function checkExistingEmail(client_email){
 async function getClientByEmail (client_email) {
     try {
       const result = await pool.query(
-        'SELECT client_firstname, client_lastname, client_email, client_type, client_password FROM client WHERE client_email = $1',
+        'SELECT client_firstname, client_lastname, client_email, client_type, client_password, client_id FROM client WHERE client_email = $1',
         [client_email])
       return result.rows[0]
     } catch (error) {
@@ -51,7 +51,7 @@ async function getClientByEmail (client_email) {
 async function getClientById (client_id) {
   try {
     const result = await pool.query(
-      'SELECT client_firstname, client_lastname, client_email, client_type, client_password FROM client WHERE client_id = $1',
+      'SELECT client_firstname, client_lastname, client_email, client_type, client_password, client_id FROM client WHERE client_id = $1',
       [client_id])
     return result.rows[0]
   } catch (error) {

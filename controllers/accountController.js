@@ -115,7 +115,9 @@ async function accountLogin(req, res) {
     return res.status(403).send('Access Forbidden')
   }
 }
-
+/**
+ * Client update view
+ */
 async function editClient(req, res, next){
   let nav = await utilities.getNav()
   let clientData = await accountModel.getClientById(req.params.client_id)

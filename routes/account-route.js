@@ -10,6 +10,9 @@ router.get("/login", utilities.handleErrors(account.buildLogin),
 });
 router.get("/", utilities.checkLogin,utilities.handleErrors(utilities.buildManageView));
 router.get("/manage", account.clientIndex)
+router.get("/editClient/:client_id", utilities.handleErrors(account.editClient))
+router.post("/updateAccount", regValidate.updateAccountRules(), regValidate.checkUpdateData, utilities.handleErrors(account.postUpdateAccount));
+router.post("/updatePassword", utilities.handleErrors(account.postUpdatePassword));
 router.get("/registration", utilities.handleErrors(account.buildRegister));
 router.post("/register",
 regValidate.registationRules(),

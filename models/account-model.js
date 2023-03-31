@@ -45,4 +45,38 @@ async function getClientByEmail (client_email) {
     }
   }
 
-  module.exports = {registerClient, checkExistingEmail, getClientByEmail}
+    /* *****************************
+* Return client data using client id
+* ***************************** */
+async function getClientById (client_id) {
+  try {
+    const result = await pool.query(
+      'SELECT client_firstname, client_lastname, client_email, client_type, client_password FROM client WHERE client_id = $1',
+      [client_id])
+    return result.rows[0]
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+  async function updateAccount(client_firstname, client_lastname, client_email, client_id){
+    try{
+      const sql = "UPDATE client SET client_firstname = $1, client_lastname = $2, client_email = $3 WHERE client_id = $4"
+      return await pool.query(sql, [client_firstname, client_lastname, client_email, client_id])
+    }
+    catch(error){
+      console.error(error)
+    }
+  }
+
+  async function updatePassword(client_password, client_id){
+    try{
+      const sql = "UPDATE client SET client_password = $1 WHERE client id = $2"
+      return await pool.query(sql, [client_password, client_id])
+    }
+    catch(error){
+      console.error(error)
+    }
+  }
+
+  module.exports = {registerClient, checkExistingEmail, getClientByEmail, updateAccount, updatePassword, getClientById}

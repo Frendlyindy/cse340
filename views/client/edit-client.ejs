@@ -1,0 +1,32 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% 
+    } %>
+
+    <% if (message) { %>
+      <p class="notice"><%= message %></p>
+      <% } %>
+
+      <form action="/client/updateAccount" method="post">
+        <label for="client_firstname">First Name</label>
+        <input type="text" name="client_firstname" id="client_firstname" required placeholder="eg. John">
+        <label for="client_lastname">Last Name</label>
+        <input type="text" name="client_lastname" id="client_lastname" required placeholder="eg. Smith">
+        <label for="client_email">Email</label>
+        <input type="email" name="client_email" id="client_email">
+        <button type="submit">Update Account</button>
+        <input type="hidden" name="client_id"
+        <% if(clientData.client_id) { %> value="<%= clientData.client_id %>"
+        <% } %>>
+      </form>
+
+      <form action="/client/updatePassword" method="post">
+        <label for="client_password">Password</label> 
+    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+    <input type="password" name="client_password" id="client_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+    <p><strong>By clicking the button below, the new password will be needed to log in going forward</strong></p>
+    <button type="submit">Update Password</button>
+        <input type="hidden" name="client_id"
+        <% if(clientData.client_id) { %> value="<%= clientData.client_id %>"
+        <% } %>>
+      </form>

@@ -1,0 +1,44 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    <% if (message) { %>
+      <p class="notice"><%= message %></p>
+      <% } %>
+
+      <%if (errors) {%>
+        <ul class="notice">
+          <% errors.array().forEach(error => {%>
+            <li><%= error.msg%></li>
+            <%})%>
+        </ul>
+        <%}%>
+
+      <form action="/inv/update" method="post" class="new-car-form">
+        <label for="classification_id">Classification</label>
+          <%-dropdown%>
+        <label for="make">Make</label>
+        <input type="text" name="make" id="make" placeholder="eg. GMC, Honda, Kia" required value="<%= inv_make %>">
+        <label for="model">Model</label>
+        <input type="text" name="model" id="model" placeholder="eg. Sierra, Civic, Soul" required value="<%= inv_model %>">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"><%= inv_description %></textarea>
+        <label for="imgPath">Image Path</label>
+        <input type="text" name="imgPath" id="imgPath" required value="<%= inv_image %>">
+        <label for="thumb">Thumbnail Path</label>
+        <input type="text" name="thumb" id="thumb" required value="<%= inv_thumbnail %>">
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" placeholder="eg. $20,000" required value="<%= inv_price %>">
+        <label for="year">Year</label>
+        <input type="text" name="year" id="year" placeholder="eg. 1998" required value="<%= inv_year %>" pattern="(?:(?:19|20)[0-9]{2})">
+        <label for="miles">Miles</label>
+        <input type="number" name="miles" id="miles" placeholder="eg. 120000" required value="<%= inv_miles %>">
+        <label for="color">Color</label>
+        <input type="text" name="color" id="color" placeholder="eg Candy Apple Red" required value="<%= inv_color %>"><br>
+        <button type="submit">Update Vehicle</button>
+        <input type="hidden" name="inv_id"
+<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+<% } %>>
+      </form>

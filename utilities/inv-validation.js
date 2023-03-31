@@ -97,6 +97,27 @@ validate.checkRegDataVehicle = async (req, res, next) => {
     next();
 }
 
+validate.checkUpdateData = async (req, res, next) => {
+    //    console.log(req.body)
+        const { inv_id, classification_id, make, model, description, imgPath, thumbPath, price, year, miles, color } = req.body
+        let errors = []
+        errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            let nav = await utilities.getNav()
+            let dropdown = await utilities.buildClassDropdown()
+            res.render("/edit/:inv_id", {
+                errors,
+                message: null,
+                title: "Update Vehicle",
+                nav,
+                dropdown,
+                classification_id, make, model, description, imgPath, thumbPath, price, year, miles, color, inv_id
+            })
+            return
+        }
+        next();
+    }
+
 validate.checkRegDataClass = async (req, res, next) => {
     const { newClass } = req.body
     let errors = []

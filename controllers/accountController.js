@@ -24,7 +24,7 @@ async function buildLogin(req, res, next) {
       title: "Client Management",
       nav,
       message: null,
-      info
+      info,
     })
   }
   
@@ -116,4 +116,88 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerClient, accountLogin, clientIndex }
+async function editClient(req, res, next){
+  let nav = await utilities.getNav()
+  let clientData = await accountModel.getClientById(req.params.client_id)
+  res.render("client/edit-client.ejs", {
+    title: "Update Account",
+    nav,
+    message: null,
+    clientData
+  })
+}
+
+async function postUpdateAccount(req, res, next){
+  let nav = await utilities.getNav()
+  const { client_firstname, client_lastname, client_email, client_id } =
+    req.body
+
+  const regResult = await accountModel.updateAccount(
+    client_firstname,
+    client_lastname,
+    client_email,
+    client_id
+  )
+  console.log(regResult)
+  if (regResult) {
+    res.status(201).render("client/index.ejs", {
+      title: "Client Managment",
+      nav,
+      message: `Congratulations, you\'re account has been updated successfully!`,
+      errors: null,
+    })
+  } else {
+    const message = "Sorry, the update failed."
+    res.status(501).render("client/edit-client.ejs", {
+      title: "Update Account",
+      nav,
+      message,
+      errors: null,
+    })
+  }
+}
+
+/* ****************************************
+ *  Process registration request
+ **************************************** */
+async function postUpdatePassword(req, res) {
+  let nav = await utilities.getNav()
+  const { client_password, client_id } =
+    req.body
+// Hash the password before storing
+let hashedPassword
+try {
+  // pass regular password and cost (salt is generated automatically)
+  hashedPassword = await bcrypt.hashSync(client_password, 10)
+} catch (error) {
+  res.status(500).render("client/edit-client.ejs", {
+    title: "Update Account",
+    nav,
+    message: 'Sorry, there was an error processing the new password.',
+    errors: null,
+  })
+}
+  const regResult = await accountModel.updatePassword(
+    hashedPassword,
+    client_id
+  )
+  console.log(regResult)
+  if (regResult) {
+    res.status(201).render("client/index.ejs", {
+      title: "Client Mangement",
+      nav,
+      message: `Congratulations, you\'re new password has been registered!.`,
+      errors: null,
+    })
+  } else {
+    const message = "Sorry, the password change failed."
+    res.status(501).render("clients/edit-client.ejs", {
+      title: "Update Account",
+      nav,
+      message,
+      errors: null,
+    })
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerClient, accountLogin, clientIndex, editClient, postUpdateAccount, postUpdatePassword }
